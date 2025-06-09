@@ -1,0 +1,17 @@
+# docker-compose.yml
+
+version: '3.8'
+
+services:
+  geetest-server:
+    # 基于当前目录下的 Dockerfile进行构建
+    build: .
+    container_name: geetest_server_arm64
+    # 强制指定构建和运行的平台为 arm64/linux
+    platform: linux/arm64
+    ports:
+      # 将宿主机的 59590 端口映射到容器的 59590 端口
+      # 格式: "宿主机端口:容器端口"
+      - "59590:59590"
+    # 配置容器重启策略，除非手动停止，否则容器总会自动重启
+    restart: unless-stopped
